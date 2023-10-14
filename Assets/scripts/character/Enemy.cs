@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Enemy : Character
 {
     public Transform target;
-
+    
 
     protected override void Start()
     {
@@ -18,7 +18,7 @@ public class Enemy : Character
     // Update is called once per frame
     void Update()
     {
-        
+        MoveDesination();
     }
     void MoveDesination()
     {

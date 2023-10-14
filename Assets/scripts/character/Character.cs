@@ -80,11 +80,16 @@ public class Character : MonoBehaviour,ItakeDame
     {
      curenthealth =curenthealth-dame;
      canHealth.sethealth(curenthealth);
+     if(curenthealth<=0)
+        {
+            Death();
+
+        }    
        
       
     }
-    private void OnTriggerEnter(Collider other)
+    private void Death()
     {
-        Debug.Log(other.gameObject.name);
-    }
+       Destroy(gameObject);
+    }    
 }

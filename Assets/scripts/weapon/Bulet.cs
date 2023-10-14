@@ -5,6 +5,8 @@ using UnityEngine;
 public class Bulet : MonoBehaviour
 {
     Character player;
+    Character enemy;
+    public int Dame;
 
     void Start()
     {
@@ -16,12 +18,13 @@ public class Bulet : MonoBehaviour
     {
        
     }
-    //private void OnTriggerEnter(Collider colide_cua_doi_tuong)
-    //{
-    //    if(!colide_cua_doi_tuong.gameObject.CompareTag("Player"))   
-    //    {
-    //        Destroy(colide_cua_doi_tuong.gameObject);
-    //    }    
-    //}
+    private void OnTriggerEnter(Collider collider_cua_doi_tuong)
+    {
+        
+        ItakeDame itakedame = collider_cua_doi_tuong.GetComponent<ItakeDame>();
+        itakedame?.Takedame(Dame);
+        Destroy(gameObject);
 
+    }
+       
 }
