@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Bulet : MonoBehaviour
 {
-    // Start is called before the first frame update
+    Character player;
+
     void Start()
     {
-        
+        player = GetComponent<Character>();
     }
 
     // Update is called once per frame
@@ -15,5 +16,12 @@ public class Bulet : MonoBehaviour
     {
        
     }
-    
+    //private void OnTriggerEnter(Collider colide_cua_doi_tuong)
+    //{
+    //    if(!colide_cua_doi_tuong.gameObject.CompareTag("Player"))   
+    //    {
+    //        Destroy(colide_cua_doi_tuong.gameObject);
+    //    }    
+    //}
+
 }

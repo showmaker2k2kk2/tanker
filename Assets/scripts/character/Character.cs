@@ -18,14 +18,14 @@ public class Character : MonoBehaviour,ItakeDame
     public int curenthealth;
 
 
-    private NavMeshAgent agent=null;
-     public CanVasHealth canHealth;
+    protected NavMeshAgent agent;
+    public CanVasHealth canHealth;
 
 
     
 
 
-    void Start()
+    protected virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         curenthealth = starthealth;
@@ -33,7 +33,7 @@ public class Character : MonoBehaviour,ItakeDame
         
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
 
@@ -79,8 +79,12 @@ public class Character : MonoBehaviour,ItakeDame
     public void Takedame(int dame)
     {
      curenthealth =curenthealth-dame;
-        canHealth.sethealth(curenthealth);
+     canHealth.sethealth(curenthealth);
        
       
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.gameObject.name);
     }
 }
