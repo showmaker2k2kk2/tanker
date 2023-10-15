@@ -6,19 +6,30 @@ public class GameManager : MonoBehaviour
 {
 
     public Transform pointcreateBoss;
-    public GameObject EnemyGun;
+   
+    public  Enemy enemy;
+
     void Start()
     {
-        
+    
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+
         PointCreateBoss();
+        }    
     }
     void PointCreateBoss()
     {
-        GameObject bos = Instantiate(EnemyGun, pointcreateBoss.position, Quaternion.identity);
+        if(enemy!=null)
+        {
+
+       Enemy bos = Instantiate(enemy, pointcreateBoss.position, Quaternion.identity);
+        }    
     }    
 }

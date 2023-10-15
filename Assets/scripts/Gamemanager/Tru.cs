@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gamanager : MonoBehaviour
+public class Tru : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Vector3 posi;
+
+   
     void Start()
     {
-        
+      posi = transform.position; 
     }
 
     // Update is called once per frame
@@ -15,4 +17,5 @@ public class Gamanager : MonoBehaviour
     {
         
     }
+    
 }
