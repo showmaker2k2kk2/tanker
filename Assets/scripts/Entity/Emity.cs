@@ -4,21 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class Emity : MonoBehaviour
+public class Emity : MonoBehaviour,ItakeDame
 {
-    public float speed;
-    public float tocdoxoay;
+  protected virtual Emity Muc_tieu_Gan_nhat { get;}
 
+        
     public CanVasHealth canHealth;
-    protected NavMeshAgent agent;
-    protected Agent _agent;
-
     public int starthealth = 100;
     public int curenthealth;
 
     protected virtual void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
         curenthealth = starthealth;
         canHealth.setUpMaxHealth(curenthealth);
     }
@@ -51,4 +47,9 @@ public class Emity : MonoBehaviour
         );
 
     }
+    protected virtual void autoAttack()
+    {
+
+    }
+
 }

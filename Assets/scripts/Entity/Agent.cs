@@ -21,7 +21,7 @@ public class Agent : MonoBehaviour
     {
         
     }
-    protected virtual void Movehuong(Vector3 huong)
+     public void Movehuong(Vector3 huong)
     {
         xoay(huong);
         agent.Move(transform.forward * speed * Time.deltaTime);

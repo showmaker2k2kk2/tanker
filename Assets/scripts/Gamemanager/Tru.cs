@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tru : MonoBehaviour
+public class Tru :Emity
 {
+
+
     private Vector3 posi;
 
    
