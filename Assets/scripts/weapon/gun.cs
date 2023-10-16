@@ -56,7 +56,7 @@ public class gun : MonoBehaviour
 
     }
     void shoot()
-    {
+    { 
         GameObject Dan = Instantiate(bullet, position_Gun.position, Quaternion.identity);
         Rigidbody rigidbulet = Dan.GetComponent<Rigidbody>();
         rigidbulet.AddForce(transform.forward * speedbul, ForceMode.Impulse);

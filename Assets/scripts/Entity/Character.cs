@@ -5,12 +5,8 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-
-
 public class Character : MonoBehaviour,ItakeDame
-{
-
-    
+{   
     public float speed;
     public float tocdoxoay;
 
@@ -64,19 +60,19 @@ public class Character : MonoBehaviour,ItakeDame
 
   
 
-    private void Movehuong(Vector3 huong)
+    protected virtual void Movehuong(Vector3 huong)
     {
         xoay(huong);
         agent.Move(transform.forward * speed * Time.deltaTime);
     }  
-    void xoay(Vector3 a)
+    protected virtual void xoay(Vector3 a)
     {
         Quaternion huongnhin = Quaternion.LookRotation(a, Vector3.up);
 
         transform.rotation = Quaternion.Lerp(transform.rotation, huongnhin, tocdoxoay * Time.deltaTime);
     }
 
-    public void Takedame(int dame)
+    public virtual void Takedame(int dame)
     {
      curenthealth =curenthealth-dame;
      canHealth.sethealth(curenthealth);
@@ -88,8 +84,16 @@ public class Character : MonoBehaviour,ItakeDame
        
       
     }
-    private void Death()
+  protected virtual void Death()
     {
-       Destroy(gameObject);
-    }    
+        this.Decall(2f, () =>
+        {
+            Destroy(gameObject);
+
+        }
+
+        );
+                       
+    }   
+
 }
