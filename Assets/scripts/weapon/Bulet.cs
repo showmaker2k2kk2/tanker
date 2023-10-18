@@ -7,6 +7,8 @@ public class Bulet : MonoBehaviour
     Character player;
     Character enemy;
     public int Dame;
+    public phePhai chuThe;
+
 
     void Start()
     {
@@ -19,12 +21,16 @@ public class Bulet : MonoBehaviour
        
     }
     private void OnTriggerEnter(Collider collider_cua_doi_tuong)
-    {
-        
+    {      
         ItakeDame itakedame = collider_cua_doi_tuong.GetComponent<ItakeDame>();
-        itakedame?.Takedame(Dame);
+        itakedame?.Takedame(Dame,chuThe);
         Destroy(gameObject);
 
     }
        
+}
+public enum phePhai
+{
+    enemy,
+    player,
 }

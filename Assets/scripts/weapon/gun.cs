@@ -10,6 +10,7 @@ public class gun : MonoBehaviour
 
     public float speedbul;
 
+    public phePhai phephai;
 
 
 
@@ -59,8 +60,9 @@ public class gun : MonoBehaviour
     { 
         GameObject Dan = Instantiate(bullet, position_Gun.position, Quaternion.identity);
         Rigidbody rigidbulet = Dan.GetComponent<Rigidbody>();
+        Bulet bulle2 = Dan.GetComponent<Bulet>();
         rigidbulet.AddForce(transform.forward * speedbul, ForceMode.Impulse);
         Destroy(Dan, 2);
-
+        bulle2.chuThe = phephai;
     }
 }

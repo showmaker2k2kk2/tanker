@@ -5,9 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 using System.Security.Cryptography;
 
-public class Emity : MonoBehaviour,ItakeDame
+public abstract class Emity : MonoBehaviour,ItakeDame
 {
   protected virtual Emity Muc_tieu_Gan_nhat { get;}
+
+    public abstract phePhai chuThe { get; }
 
     private Agent agent;
     public CanVasHealth canHealth;
@@ -31,8 +33,9 @@ public class Emity : MonoBehaviour,ItakeDame
     {
         
     }
-    public virtual void Takedame(int dame)
+    public virtual void Takedame(int dame,phePhai phePhai)
     {
+        if (phePhai == chuThe) return;
         curenthealth = curenthealth - dame;
         canHealth.sethealth(curenthealth);
         if (curenthealth <= 0)
@@ -52,6 +55,6 @@ public class Emity : MonoBehaviour,ItakeDame
         );
 
     }
-    
 
+    
 }

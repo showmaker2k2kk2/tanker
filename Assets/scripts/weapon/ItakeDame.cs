@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface ItakeDame 
 {
-    public void Takedame(int dame);
+    public phePhai chuThe { get;}
+    public void Takedame(int dame,phePhai phe);
+
 }

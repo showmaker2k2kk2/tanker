@@ -17,9 +17,7 @@ public class Character : MonoBehaviour,ItakeDame
     protected NavMeshAgent agent;
     public CanVasHealth canHealth;
 
-
-    
-
+    public  phePhai chuThe => throw new System.NotImplementedException();
 
     protected virtual void Start()
     {
@@ -94,6 +92,10 @@ public class Character : MonoBehaviour,ItakeDame
 
         );
                        
-    }   
+    }
 
+    public void Takedame(int dame, phePhai phe)
+    {
+        
+    }
 }

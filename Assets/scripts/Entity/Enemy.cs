@@ -25,8 +25,8 @@ public class Enemy :Emity
   
     protected override Emity Muc_tieu_Gan_nhat=>GameManager.Instance.doi_tuong_tan_cong_cua_e.OrderBy(e => Vector3.Distance(transform.position, e.transform.position)).First();
 
+    public override phePhai chuThe => phePhai.enemy;
 
-   
     NavMeshAgent mesh;
 
     bool ban_tank=true; 
@@ -113,8 +113,10 @@ public class Enemy :Emity
     {
         GameObject Dan = Instantiate(bullet, position_Gun.position, Quaternion.identity);
         Rigidbody rigidbulet = Dan.GetComponent<Rigidbody>();
+        Bulet bulle2 = Dan.GetComponent<Bulet>();
         rigidbulet.AddForce(transform.forward * speedbul, ForceMode.Impulse);
         Destroy(Dan, 2);
+        bulle2.chuThe = chuThe;
     }
 
     void Di_den_tru()
