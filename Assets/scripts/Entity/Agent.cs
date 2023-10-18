@@ -19,17 +19,17 @@ public class Agent : MonoBehaviour
     
     void Update()
     {
-        
+      
     }
      public void Movehuong(Vector3 huong)
     {
         xoay(huong);
+    
         agent.Move(transform.forward * speed * Time.deltaTime);
     }
-    protected virtual void xoay(Vector3 a)
+     public void xoay(Vector3 a)
     {
         Quaternion huongnhin = Quaternion.LookRotation(a, Vector3.up);
-
         transform.rotation = Quaternion.Lerp(transform.rotation, huongnhin, tocdoxoay * Time.deltaTime);
     }
 

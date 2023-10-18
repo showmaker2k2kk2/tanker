@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
     void Start()
     {
         
@@ -15,4 +15,9 @@ public class CharacterAttack : MonoBehaviour
     {
         
     }
+    void Attacktarget(Emity doi_tuong_tan_cong)// pham vi tan  cong
+    {
+        
+
+    }    
 }

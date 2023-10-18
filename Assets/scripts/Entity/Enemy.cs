@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,56 +8,119 @@ using UnityEngine.UI;
 
 public class Enemy :Emity
 {
+
+    public Transform diemien;
+    public Transform position_Gun;
+    public GameObject bullet;
+    public float speedbul = 50f;
+
+
     private Agent agent;
-    protected override Emity Muc_tieu_Gan_nhat=>GameManager.Instance.doi_tuong_tan_cong_cua_e.OrderBy(e => Vector3.Distance(transform.position, e.transform.position)).First();
+    public float tocdoxoay;
+
+
+    public float Time_giua_cac_lan_tan_cong=1f;
+    public float timeattackstart = 0f;
+    public bool canattack = true;
   
-    //public Transform position_Gun;
-    //public GameObject bullet;
-    //private gun gun;
+    protected override Emity Muc_tieu_Gan_nhat=>GameManager.Instance.doi_tuong_tan_cong_cua_e.OrderBy(e => Vector3.Distance(transform.position, e.transform.position)).First();
+
+
+   
     NavMeshAgent mesh;
 
-    bool ban_tank=true;
-    private float Range_attack_enemy = 10;
+    bool ban_tank=true; 
+    private float Range_attack_enemy = 40f;
 
 
     private void Awake()
     {
         mesh= GetComponent<NavMeshAgent>();
         agent= GetComponent<Agent>();
+      
     }
 
     
     protected override void Start()
     {
         base.Start();
+        
+        //// kc tu enemy den doi tuong tan cong nho (pham vi tan con ) 
+        //if (mucTieuGanNhat && kc_tu_enemy_den_target < Range_attack_enemy) 
+        //{
+        //    AttackTarget(mucTieuGanNhat);
+        //} 
+        Di_den_tru();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-       // float khoang_cach_dung_tu_enemy_den_player = Vector3.Distance(transform.position, player.transform.position);
-       // float khoang_cach_dung_tu_enemy_den_tru = Vector3.Distance(transform.position, tru.transform.position);
-       
-       //if(khoang_cach_dung_tu_enemy_den_tru<Range_attack_enemy)
-       // {
-            
-       // }    
-        
+        timeattackstart += Time.deltaTime;
+
+      
+        Emity mucTieuGanNhat = Muc_tieu_Gan_nhat;
+        float kc_tu_enemy_den_target = Vector3.Distance(transform.position, mucTieuGanNhat.transform.position);
+    
+        if (kc_tu_enemy_den_target <= Range_attack_enemy)
+        {
+            //AttackTarget(mucTieuGanNhat);
+            mesh.isStopped = true;
+            Debug.Log(kc_tu_enemy_den_target);
+            Debug.Log("da den muc tieu");
+            xoay(mucTieuGanNhat);
+
+            if(timeattackstart>Time_giua_cac_lan_tan_cong)
+            {
+                tancong(mucTieuGanNhat);
+                timeattackstart=0;
+            }    
+    
 
 
-       // MoveDesination();
+        }
+        else
+        {
+        mesh.isStopped = false;
+        }
+        //if(kc_tu_enemy_den_target<=Range_attack_enemy)
+        //{
+        //    mesh.isStopped = true;
+        //}    
+    }
+    protected void AttackTarget(Emity doi_tuong_tan_cong)// pham vi tan  cong
+    {
+        Nav_agent.isStopped = true;
+        xoay(doi_tuong_tan_cong);
+
+
+        //dừng di chuyển agent.isStop=true;
+        //xoay 
+        //bắn dạn 
 
     }
-  public  void MoveDesination()
+    void xoay(Emity target)
     {
-        Vector3 pos = FindObjectOfType<Tru>().transform.position;
-         mesh.SetDestination(pos);
-    }  
-   private void EnemyAttack(int dame)
-    {
-           mesh.isStopped= true;
-        //xoay()
+        Vector3 huongfoward=(target.transform.position-transform.position).normalized;
+        Quaternion huong = Quaternion.LookRotation(huongfoward,Vector3.up);
+        transform.rotation = Quaternion.Lerp(transform.rotation, huong, agent.tocdoxoay * Time.deltaTime);
+    }
+  
 
+
+    void tancong(Emity target)
+    {
+        GameObject Dan = Instantiate(bullet, position_Gun.position, Quaternion.identity);
+        Rigidbody rigidbulet = Dan.GetComponent<Rigidbody>();
+        rigidbulet.AddForce(transform.forward * speedbul, ForceMode.Impulse);
+        Destroy(Dan, 2);
+    }
+
+    void Di_den_tru()
+    {
+        mesh.SetDestination(diemien.position);
     }    
+
+    
 }
