@@ -10,11 +10,9 @@ public class gun : MonoBehaviour
 
     public float speedbul;
 
-    public phePhai phephai;
+    //public phePhai phephai;
 
-
-
-
+    public Doituong doituongcuascripts;
     public float speedro;
     //public Canvas canvas;
     //public Joystick joy;
@@ -60,9 +58,10 @@ public class gun : MonoBehaviour
     { 
         GameObject Dan = Instantiate(bullet, position_Gun.position, Quaternion.identity);
         Rigidbody rigidbulet = Dan.GetComponent<Rigidbody>();
-        Bulet bulle2 = Dan.GetComponent<Bulet>();
+   
         rigidbulet.AddForce(transform.forward * speedbul, ForceMode.Impulse);
+        Bulet butlet2=Dan.GetComponent<Bulet>();
+        butlet2.doituong = doituongcuascripts;
         Destroy(Dan, 2);
-        bulle2.chuThe = phephai;
     }
 }

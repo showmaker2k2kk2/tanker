@@ -4,7 +4,8 @@ using UnityEngine;
 
 public interface ItakeDame 
 {
-    public phePhai chuThe { get;}
-    public void Takedame(int dame,phePhai phe);
+    //public phePhai chuThe { get; }
+    public Doituong doituongcuascripts { get; }
+    public void Takedame(int dame,Doituong doituongbuletgoi_detakedame);
 
 }

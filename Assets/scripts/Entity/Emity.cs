@@ -9,7 +9,11 @@ public abstract class Emity : MonoBehaviour,ItakeDame
 {
   protected virtual Emity Muc_tieu_Gan_nhat { get;}
 
-    public abstract phePhai chuThe { get; }
+   
+
+    public abstract Doituong doituongcuascripts {  get;}
+    //public abstract phePhai chuThe { get; }
+
 
     private Agent agent;
     public CanVasHealth canHealth;
@@ -33,9 +37,9 @@ public abstract class Emity : MonoBehaviour,ItakeDame
     {
         
     }
-    public virtual void Takedame(int dame,phePhai phePhai)
+    public virtual void Takedame(int dame)
     {
-        if (phePhai == chuThe) return;
+        //if (phePhai == chuThe) return;
         curenthealth = curenthealth - dame;
         canHealth.sethealth(curenthealth);
         if (curenthealth <= 0)
@@ -55,6 +59,15 @@ public abstract class Emity : MonoBehaviour,ItakeDame
         );
 
     }
+    public void Takedame(int dame, Doituong doi_tuongBuletgoiDetakedame)
+    {
+        if (doi_tuongBuletgoiDetakedame == doituongcuascripts) return;
+        curenthealth = curenthealth - dame;
+        canHealth.sethealth(curenthealth);
+        if (curenthealth <= 0)
+        {
+            Death();
 
-    
+        }
+    }
 }

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class Enemy :Emity
 {
+    protected Enemy enemygannhat { get; }
 
     public Transform diemien;
     public Transform position_Gun;
@@ -25,7 +26,9 @@ public class Enemy :Emity
   
     protected override Emity Muc_tieu_Gan_nhat=>GameManager.Instance.doi_tuong_tan_cong_cua_e.OrderBy(e => Vector3.Distance(transform.position, e.transform.position)).First();
 
-    public override phePhai chuThe => phePhai.enemy;
+    public override Doituong doituongcuascripts => Doituong.enemy;
+
+    //public override phePhai chuThe => phePhai.enemy;
 
     NavMeshAgent mesh;
 
@@ -66,19 +69,14 @@ public class Enemy :Emity
         if (kc_tu_enemy_den_target <= Range_attack_enemy)
         {
             //AttackTarget(mucTieuGanNhat);
-            mesh.isStopped = true;
-            Debug.Log(kc_tu_enemy_den_target);
-            Debug.Log("da den muc tieu");
+            mesh.isStopped = true;       
             xoay(mucTieuGanNhat);
 
             if(timeattackstart>Time_giua_cac_lan_tan_cong)
             {
                 tancong(mucTieuGanNhat);
                 timeattackstart=0;
-            }    
-    
-
-
+            }        
         }
         else
         {
@@ -89,15 +87,11 @@ public class Enemy :Emity
         //    mesh.isStopped = true;
         //}    
     }
-    protected void AttackTarget(Emity doi_tuong_tan_cong)// pham vi tan  cong
+    protected void AttackTarget(Emity doi_tuong_tan_cong)
     {
         Nav_agent.isStopped = true;
         xoay(doi_tuong_tan_cong);
 
-
-        //dừng di chuyển agent.isStop=true;
-        //xoay 
-        //bắn dạn 
 
     }
     void xoay(Emity target)
@@ -116,7 +110,7 @@ public class Enemy :Emity
         Bulet bulle2 = Dan.GetComponent<Bulet>();
         rigidbulet.AddForce(transform.forward * speedbul, ForceMode.Impulse);
         Destroy(Dan, 2);
-        bulle2.chuThe = chuThe;
+        bulle2.doituong = doituongcuascripts;
     }
 
     void Di_den_tru()

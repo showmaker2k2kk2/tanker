@@ -5,13 +5,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance=null;
+
+
     public List<Enemy> enemies;
 
-
     public List<Emity> doi_tuong_tan_cong_cua_e;
-    public Transform pointcreateBoss;
+
+    private Transform pointcreateBoss;
    
-    public  Enemy enemy;
+    private   Enemy enemy;
 
     void Start()
     {

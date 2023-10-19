@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterBrain : MonoBehaviour
 {
-    Character character;
+    
 
     void Start()
     {
